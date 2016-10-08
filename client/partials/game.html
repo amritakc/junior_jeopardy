@@ -1,15 +1,27 @@
-<div ng-controller = "gamesController">
+<div ng-controller="gamesController">
 
 	<h1>Junior Jeopardy!</h1>
 	<h2>Question:</h2>
 
-	<div ng-repeat="question in questions">
-		<p>{{question.q}}</p>
+	<form>
+		<input type="submit" value="Get Question" ng-click="newQuestion()"></p>
+	</form>
+
+	<div ng-repeat="quest in question">
+		<p>{{quest.q}}</p>
 	</div>
 
-	<p>Team Blue:</p>
+	<p>Team Blue Score: {{bluePoints}}</p>
 
-	<p>Team Yellow:</p>
+	<form>
+		<input type="submit" value="Team Blue" ng-click="addBlue()"></p>
+	</form>
 
+
+	<p>Team Yellow Score: {{yellowPoints}}</p>
+
+	<form>
+		<input type="submit" value="Team Yellow" ng-click="addYellow()"></p>
+	</form>
 
 </div>

@@ -26,12 +26,17 @@
 
 	    	myApp.factory('questionFactory', function($http){
 	    		var questions = [
-	    			{q:'Who is the first Guru?'},
-	    			{q:'How many Gurus are there'}]
+	    			{q:'Question 1'},
+	    			{q:'Questions 2'},
+	    			{q:'Question 3'},
+	    			{q:'Question 4'},
+	    			{q:'Question 5'},
+	    			{q:'Question 6'},]
 	    		var factory = {}
 
-	    		factory.getQuestions = function(callback){
-	    			callback(questions)
+	    		factory.getQuestion = function(callback){
+	    			var item = questions[Math.floor(Math.random()*questions.length)];
+	    			callback([item])
 	    		}
 
 	    		return factory
@@ -40,28 +45,53 @@
 
 			myApp.controller('gamesController', function($scope, $location, questionFactory){
 
-				$scope.questions = []
+				$scope.question = []
+				$scope.bluePoints = 20
+				$scope.yellowPoints = 20
 
-				questionFactory.getQuestions(function(data){
-					$scope.questions = data
+				questionFactory.getQuestion(function(data){
+					$scope.question = data
 				})
 
-				if(navigator.geolocation){
-          			navigator.geolocation.getCurrentPosition(function(position){
-	            	var pos = {
-		              lat: position.coords.latitude,
-		              lng: position.coords.longitude
-		            };
-	            	console.log(pos)
-	        		})
-	        	}
-	        	else{
-		          // Browser doesn't support Geolocation
-		        	handleLocationError(false, infoWindow, map.getCenter());
-		        }
-		    	
-				
+				$scope.newQuestion = function(){
+					questionFactory.getQuestion(function(data){
+						$scope.question = data
+						console.log(data)
+					})
+				}
 
+				$scope.currentBlue = function(){
+					$scope.bluePoints = 20
+				}
+
+				$scope.currentyellow = function(){
+					$scope.yellowPoints = 20
+				}				
+
+				$scope.addBlue = function(){
+					$scope.bluePoints += 20
+				}
+
+				$scope.addYellow = function(){
+					$scope.yellowPoints += 20
+				}
+
+				// if(navigator.geolocation){
+    //       			navigator.geolocation.getCurrentPosition(function(position){
+	   //          	var pos = {
+		  //             lat: position.coords.latitude,
+		  //             lng: position.coords.longitude
+		  //           };
+	   //          	console.log(pos)
+	   //      		})
+	   //      	}
+	   //      	else{
+		  //         // Browser doesn't support Geolocation
+		  //       	handleLocationError(false, infoWindow, map.getCenter());
+		  //       }
+
+
+	
 			})	    	                       
 
 		</script>
