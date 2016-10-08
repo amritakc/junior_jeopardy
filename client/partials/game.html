@@ -1,5 +1,15 @@
 <div ng-controller = "gamesController">
 
 	<h1>Junior Jeopardy!</h1>
+	<h2>Question:</h2>
+
+	<div ng-repeat="question in questions">
+		<p>{{question.q}}</p>
+	</div>
+
+	<p>Team Blue:</p>
+
+	<p>Team Yellow:</p>
+
 
 </div>
